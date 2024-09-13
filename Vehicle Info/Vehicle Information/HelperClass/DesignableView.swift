@@ -22,47 +22,36 @@
 
 import UIKit
 
-@IBDesignable public class DesignableView: SpringView {
+@IBDesignable
+class CustomView: UIView {
     
-    @IBInspectable public var borderColor: UIColor = UIColor.clear {
+    @IBInspectable var borderColor: UIColor? {
         didSet {
-            layer.borderColor = borderColor.cgColor
+            updateView()
         }
     }
-    
-    @IBInspectable public var borderWidth: CGFloat = 0 {
+
+    @IBInspectable var borderWidth: CGFloat = 0 {
         didSet {
-            layer.borderWidth = borderWidth
+            updateView()
         }
     }
-    
-    @IBInspectable public var cornerRadius: CGFloat = 0 {
+
+    @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet {
-            layer.cornerRadius = cornerRadius
+            updateView()
         }
     }
-    
-    @IBInspectable public var shadowColor: UIColor = UIColor.clear {
-        didSet {
-            layer.shadowColor = shadowColor.cgColor
-        }
+
+    private func updateView() {
+        layer.borderColor = borderColor?.cgColor
+        layer.borderWidth = borderWidth
+        layer.cornerRadius = cornerRadius
+        layer.masksToBounds = cornerRadius > 0
     }
-    
-    @IBInspectable public var shadowRadius: CGFloat = 0 {
-        didSet {
-            layer.shadowRadius = shadowRadius
-        }
-    }
-    
-    @IBInspectable public var shadowOpacity: CGFloat = 0 {
-        didSet {
-            layer.shadowOpacity = Float(shadowOpacity)
-        }
-    }
-    
-    @IBInspectable public var shadowOffsetY: CGFloat = 0 {
-        didSet {
-            layer.shadowOffset.height = shadowOffsetY
-        }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        updateView()
     }
 }

@@ -12,6 +12,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Setting global font for UILabel
+        UILabel.appearance().font = UIFont(name: "OpenSans-Regular", size: 17)
+        
+        // Setting global font for UIButton
+        UIButton.appearance().titleLabel?.font = UIFont(name: "OpenSans-Regular", size: 17)
+        UIButton.appearance().titleLabel?.adjustsFontForContentSizeCategory = false
+
+        // Setting global font for UITextField
+        UITextField.appearance().font = UIFont(name: "OpenSans-Regular", size: 17)
+               
         return true
     }
 

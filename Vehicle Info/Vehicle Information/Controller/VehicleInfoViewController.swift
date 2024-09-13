@@ -35,7 +35,7 @@ class VehicleInfoViewController: UIViewController, ShowAlert {
     var fuelTypeList = [FuelType]()
     
     var currentMenuType: MenuType = .type
-    
+
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -185,8 +185,9 @@ class VehicleInfoViewController: UIViewController, ShowAlert {
     
     
     @IBAction func vehicleMenuTapped(_ sender: UIButton) {
-        guard let menuType = MenuType(rawValue: sender.tag) else { return }
         
+        guard let menuType = MenuType(rawValue: sender.tag) else { return }
+
         // Dynamically choose the menu based on `currentMenuType`
         switch menuType.rawValue {
             
@@ -213,7 +214,6 @@ class VehicleInfoViewController: UIViewController, ShowAlert {
         default:
             print("test")
         }
-        
         sender.showsMenuAsPrimaryAction = true
     }
     
