@@ -20,6 +20,10 @@ class VehicleInfoViewController: UIViewController, ShowAlert {
     @IBOutlet weak var fuelType: UIButton!
     @IBOutlet weak var imeiLbl: UILabel!
     
+    // Radio button outlets
+    @IBOutlet weak var radioButton1: UIButton!
+    @IBOutlet weak var radioButton2: UIButton!
+    
     // MARK: - Properties
     private let vehicleViewModel = VehicleViewModel()
     let session = AVCaptureSession()
@@ -33,9 +37,22 @@ class VehicleInfoViewController: UIViewController, ShowAlert {
     var currentMenuType: MenuType = .type
     
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Customize title color
+        radioButton1.tintColor = UIColor.red // Change to your desired tint color
+        radioButton1.setTitleColor(UIColor.gray, for: .normal) // Change to your desired title color
+        
+        // Customize title color
+        radioButton2.tintColor = UIColor.red // Change to your desired tint color
+        radioButton2.setTitleColor(UIColor.gray, for: .normal) // Change to your desired title color
+           
+        
+        // Adding tap gesture recognizer
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
         
         if isNetworkReachable() {
             
@@ -61,6 +78,12 @@ class VehicleInfoViewController: UIViewController, ShowAlert {
         } else {
             self.showAlertWithActions(AKErrorHandler.CommonErrorMessages.NO_INTERNET_AVAILABLE)
         }
+    }
+    
+    
+    // Function to dismiss the keyboard
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     // MARK: - set up camera
@@ -127,6 +150,7 @@ class VehicleInfoViewController: UIViewController, ShowAlert {
                                       style: .default))
         present(alert, animated: true)
     }
+    
     
     // MARK: - Actions
     @IBAction func scannerButtonTapped(_ sender: UIButton) {

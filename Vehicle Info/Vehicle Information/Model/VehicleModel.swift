@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - VehicleInfo
+// MARK: - VehicleInfof
 /// Represents vehicle information and conforms to Codable.
 struct VehicleInfo: Codable {
     
